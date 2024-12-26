@@ -1,41 +1,39 @@
+import { pageLinks, socialLinks } from '../data';
+
 export const Footer = () => {
   return (
     <footer className="section footer">
       <ul className="footer-links">
-        <li>
-          <a href="#home" className="footer-link">home</a>
-        </li>
-        <li>
-          <a href="#about" className="footer-link">about</a>
-        </li>
-        <li>
-          <a href="#services" className="footer-link">services</a>
-        </li>
-        <li>
-          <a href="#featured" className="footer-link">featured</a>
-        </li>
+        {pageLinks.map((item) => {
+          const { id, href, text } = item;
+          return (
+            <li key={id}>
+              <a href={href} className="footer-link">
+                {text}
+              </a>
+            </li>
+          );
+        })}
       </ul>
       <ul className="footer-icons">
-        <li>
-          <a href="https://www.facebook.com" target="_blank" className="footer-icon"
-            ><i className="fab fa-facebook"></i
-          ></a>
-        </li>
-        <li>
-          <a href="https://www.twitter.com" target="_blank" className="footer-icon"
-            ><i className="fab fa-twitter"></i
-          ></a>
-        </li>
-        <li>
-          <a href="https://www.squarespace.com" target="_blank" className="footer-icon"
-            ><i className="fab fa-squarespace"></i
-          ></a>
-        </li>
+        {
+          /* social links */
+          socialLinks.map((item) => {
+            const { id, href, icon } = item;
+            return (
+              <li key={id}>
+                <a href={href} target="_blank" className="footer-icon">
+                  <i className={icon}></i>
+                </a>
+              </li>
+            );
+          })
+        }
       </ul>
       <p className="copyright">
         copyright &copy; Backroads Travel Tours Company
-        <span id="date"></span>. All rights reserved.
+        <span id="date">{new Date().getFullYear()}</span>. All rights reserved.
       </p>
     </footer>
-  )
-}
+  );
+};
